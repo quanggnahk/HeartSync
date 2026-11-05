@@ -1,0 +1,8 @@
+{
+  "me": { "name": "Joshua Edwards", "age": 29, "gender": "Male", "pronouns": "he/him", "emoji": "🧔", "color": "#FFF1B8", "about": "", "occupation": "", "education": "", "location": "NV 89104", "height": "", "smoking": "", "drinking": "", "pets": "", "children": "", "zodiac": "", "religion": "", "interests": ["Coffee brewing", "Trekking"], "languages": ["English", "Finnish"], "verified": false },
+  "filters": { "genders": ["Female"], "ageMin": 22, "ageMax": 45, "maxDistance": 30, "languages": [], "expandWhenEmpty": true },
+  "seed": {
+    "matches": ["maria", "anna", "jennifer", "emily"],
+    "chats": { "emily": [{ "from": "them", "text": "Haha I don't think so...", "minsAgo": 1320 }] }
+  }
+}

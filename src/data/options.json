@@ -1,0 +1,19 @@
+{
+  "smoking": ["Non-smoker", "Occasionally", "Regularly"],
+  "drinking": ["Never", "Socially", "Often"],
+  "pets": ["Cat lover", "Dog lover", "No pets"],
+  "children": ["Want two", "Have kids", "Don't want"],
+  "zodiac": ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"],
+  "religion": ["No religious affiliation", "Christian", "Buddhist", "Muslim", "Other"],
+  "interests": ["Sci-fi movies", "Coffee brewing", "Trekking", "Classical Music & Art", "Thriller Films", "Nature", "Baking", "Asian Food", "Mathematics & Technology", "Yoga", "Gaming", "Travel", "Photography", "Running", "Board games"],
+  "languages": ["English", "Spanish", "Finnish", "Tagalog", "Mandarin Chinese", "Vietnamese", "French"],
+  "icebreakers": ["What's the best trip you've ever taken?", "Coffee or tea — and how do you take it?", "What's a song you can't stop replaying?", "What would your perfect Sunday look like?"],
+  "replies": ["Haha, that made me smile 😄", "Tell me more!", "Honestly same. What about you?", "Ooh, I like where this is going.", "Ha! Okay, you have my attention.", "Free this weekend? 👀"],
+  "quiz": [
+    { "q": "Pick a perfect evening", "a": "Cozy movie night", "b": "Night out in the city" },
+    { "q": "Pick a getaway", "a": "Mountain cabin", "b": "Beach resort" },
+    { "q": "Pick a morning drink", "a": "Coffee", "b": "Tea" },
+    { "q": "Pick a pace of life", "a": "Plan everything", "b": "Go with the flow" },
+    { "q": "Pick a first date", "a": "Dinner and talk", "b": "Something adventurous" }
+  ]
+}
