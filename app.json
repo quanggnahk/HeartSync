@@ -1,15 +1,17 @@
 {
   "expo": {
-    "name": "heartsync",
+    "name": "HeartSync",
     "slug": "heartsync",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.quanggnahk.heartsync"
     },
     "android": {
+      "package": "com.quanggnahk.heartsync",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -24,6 +26,11 @@
     "plugins": [
       "expo-status-bar",
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "e770d8c4-dff4-4309-86cd-c215d58ee1bd"
+      }
+    }
   }
 }
