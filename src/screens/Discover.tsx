@@ -15,7 +15,7 @@ const TH = W * 0.28;
 export default function Discover() {
   const nav = useNav();
   const { state, dispatch } = useApp();
-  const queue = useMemo(() => getDeck(state), [state.filters, state.passed, state.liked, state.blocked, state.matches]);
+  const queue = useMemo(() => getDeck(state), [state.filters, state.passed, state.liked, state.blocked, state.matches, state.profilesVersion]);
   const top = queue[0], next = queue[1];
   const total = queue.length + state.passed.length + state.liked.length;
   const progress = total ? (state.passed.length + state.liked.length) / total : 0;

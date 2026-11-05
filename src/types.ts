@@ -14,17 +14,30 @@ export interface Me {
   interests: string[]; languages: string[];
 }
 export interface AppState {
-  hydrated: boolean; signedIn: boolean; tutorialSeen: boolean; skipConfirm: boolean; premium: boolean;
-  me: Me; filters: Filters;
-  passed: string[]; liked: string[]; blocked: string[]; saved: string[]; matches: string[];
-  chats: Record<string, Message[]>; lastSwiped: { id: string; dir: Dir } | null; newMatchId: string | null;
+  hydrated: boolean; 
+  signedIn: boolean; 
+  tutorialSeen: boolean; 
+  skipConfirm: boolean; 
+  premium: boolean;
+  me: Me; 
+  filters: Filters;
+  passed: string[]; 
+  liked: string[]; 
+  blocked: string[]; 
+  saved: string[]; 
+  matches: string[];
+  chats: Record<string, Message[]>; 
+  lastSwiped: { id: string; dir: Dir } | null; 
+  newMatchId: string | null;
+  profilesVersion: number;
 }
 export type Action =
   | { type: 'HYDRATE'; state: Partial<AppState> } | { type: 'SIGNIN' } | { type: 'SIGNOUT' }
   | { type: 'TUTORIAL_DONE' } | { type: 'SKIP_CONFIRM' } | { type: 'SWIPE'; id: string; dir: Dir } | { type: 'UNDO' }
   | { type: 'CLEAR_MATCH' } | { type: 'SAVE'; id: string } | { type: 'SEND'; id: string; msg: Message }
   | { type: 'FILTERS'; filters: Filters } | { type: 'UPDATE_ME'; patch: Partial<Me> } | { type: 'PREMIUM' }
-  | { type: 'BLOCK'; id: string } | { type: 'UNBLOCK_ALL' } | { type: 'RESET_SWIPES' } | { type: 'RESET_ALL' };
+  | { type: 'BLOCK'; id: string } | { type: 'UNBLOCK_ALL' } | { type: 'RESET_SWIPES' } | { type: 'RESET_ALL' }
+  | { type: 'PROFILES_LOADED' };
 export type RootParams = {
   SignIn: undefined; Tabs: undefined; ProfileDetail: { id: string }; Filters: undefined;
   MatchFound: { id: string }; Chat: { id: string }; MiniGame: { id: string }; VideoCall: { id: string }; EditProfile: undefined;

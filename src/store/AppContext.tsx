@@ -2,9 +2,12 @@ import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import db from '../data/db.json';
 import profiles from '../data/profiles.json';
+import { api } from '../api/client'; // [SERVER] 1. import tầng gọi API
 import { Action, AppState, Filters, Me, Message, Profile } from '../types';
 
-export const PROFILES = profiles as Profile[];
+// [SERVER] 2. Mảng có thể cập nhật tại chỗ: ban đầu là dữ liệu JSON đóng gói sẵn,
+// khi tải được từ server thì được thay thế bằng dữ liệu server
+export const PROFILES: Profile[] = [...(profiles as Profile[])];
 const KEY = 'heartsync-state-v1';
 
 const initial = (): AppState => {
@@ -16,6 +19,7 @@ const initial = (): AppState => {
     hydrated: false, signedIn: false, tutorialSeen: false, skipConfirm: false, premium: false,
     me: db.me as Me, filters: db.filters as Filters,
     passed: [], liked: [], blocked: [], saved: [], matches: db.seed.matches, chats, lastSwiped: null, newMatchId: null,
+    profilesVersion: 0, // [SERVER] 3. tăng lên mỗi lần tải xong hồ sơ để giao diện tính lại
   };
 };
 
@@ -47,6 +51,7 @@ function reducer(s: AppState, a: Action): AppState {
     case 'UNBLOCK_ALL': return { ...s, blocked: [] };
     case 'RESET_SWIPES': return { ...s, passed: [], liked: [], lastSwiped: null };
     case 'RESET_ALL': return { ...initial(), hydrated: true, signedIn: true, tutorialSeen: true };
+    case 'PROFILES_LOADED': return { ...s, profilesVersion: s.profilesVersion + 1 }; // [SERVER] 4. action mới
   }
 }
 
@@ -61,9 +66,22 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       .catch(() => dispatch({ type: 'HYDRATE', state: {} }));
   }, []);
 
+  // [SERVER] 5a. Tải hồ sơ từ server lúc mở app; lỗi mạng thì giữ dữ liệu JSON đóng gói sẵn
+  useEffect(() => {
+    api.profiles()
+      .then((list) => {
+        if (Array.isArray(list) && list.length) {
+          PROFILES.splice(0, PROFILES.length, ...list);
+          dispatch({ type: 'PROFILES_LOADED' });
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   useEffect(() => {
     if (!state.hydrated) return;
-    const { hydrated, newMatchId, ...persist } = state;
+    // [SERVER] 5b. Không lưu profilesVersion vào AsyncStorage
+    const { hydrated, newMatchId, profilesVersion, ...persist } = state;
     AsyncStorage.setItem(KEY, JSON.stringify(persist)).catch(() => {});
   }, [state]);
 
