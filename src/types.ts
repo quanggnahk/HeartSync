@@ -1,9 +1,24 @@
 export type Gender = 'Male' | 'Female' | 'Nonbinary';
 export type Dir = 'left' | 'right';
 export interface Profile {
-  id: string; name: string; age: number; gender: Gender; pronouns: string; job: string; verified: boolean;
-  distanceKm: number; city: string; bio: string; color: string; emoji: string;
-  details: string[]; interests: string[]; languages: string[]; likesYou: boolean; online: 'online' | 'away' | 'offline';
+  id: string;
+  name: string;
+  age: number;
+  gender: Gender;
+  pronouns: string;
+  job: string;
+  verified: boolean;
+  distanceKm: number;
+  city: string;
+  bio: string;
+  color: string;
+  emoji: string;
+  photos?: string[];
+  details: string[];
+  interests: string[];
+  languages: string[];
+  likesYou: boolean;
+  online: "online" | "away" | "offline";
 }
 export interface Message { id: string; from: 'me' | 'them'; text: string; ts: number }
 export interface Filters { genders: Gender[]; ageMin: number; ageMax: number; maxDistance: number; languages: string[]; expandWhenEmpty: boolean }

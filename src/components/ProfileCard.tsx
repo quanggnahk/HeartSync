@@ -4,16 +4,42 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { Profile } from '../types';
 import { C } from '../theme';
+import { Image } from "expo-image";
 
 export default function ProfileCard({ p }: { p: Profile }) {
   return (
-    <View style={[StyleSheet.absoluteFill, { backgroundColor: p.color, borderRadius: 22, overflow: 'hidden' }]}>
-      <Text style={s.emoji}>{p.emoji}</Text>
-      <LinearGradient colors={['transparent', 'rgba(0,0,0,0.65)']} style={s.fade} />
+    <View
+      style={[
+        StyleSheet.absoluteFill,
+        { backgroundColor: p.color, borderRadius: 22, overflow: "hidden" },
+      ]}
+    >
+      {p.photos?.length ? (
+        <Image
+          source={{ uri: p.photos[0] }}
+          style={StyleSheet.absoluteFill}
+          contentFit="cover"
+          transition={200}
+          cachePolicy="memory-disk"
+        />
+      ) : (
+        <Text style={s.emoji}>{p.emoji}</Text>
+      )}
+      <LinearGradient
+        colors={["transparent", "rgba(0,0,0,0.65)"]}
+        style={s.fade}
+      />
       <View style={s.info}>
-        <Text style={s.name}>{p.name}, {p.age} {p.verified && <Ionicons name="shield-checkmark" size={20} color="#1E90FF" />}</Text>
+        <Text style={s.name}>
+          {p.name}, {p.age}{" "}
+          {p.verified && (
+            <Ionicons name="shield-checkmark" size={20} color="#1E90FF" />
+          )}
+        </Text>
         <Text style={s.pron}>{p.pronouns}</Text>
-        <Text style={s.job}><Ionicons name="briefcase-outline" size={14} color="#fff" /> {p.job}</Text>
+        <Text style={s.job}>
+          <Ionicons name="briefcase-outline" size={14} color="#fff" /> {p.job}
+        </Text>
       </View>
     </View>
   );
